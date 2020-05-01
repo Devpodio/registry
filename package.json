@@ -52,7 +52,8 @@
     "semver": "5.5.1",
     "verdaccio-audit": "1.0.0",
     "verdaccio-htpasswd": "1.0.1",
-    "verror": "1.10.0"
+    "verror": "1.10.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@commitlint/cli": "7.2.1",
@@ -163,7 +164,7 @@
   ],
   "scripts": {
     "release": "standard-version -a -s",
-    "prepublish": "in-publish && npm run build:webui && npm run code:build || not-in-publish",
+    "prepublish": "yarn run snyk-protect && in-publish && npm run build:webui && npm run code:build || not-in-publish",
     "flow": "flow check",
     "pretest": "npm run code:build",
     "test": "npm run test:unit",
@@ -184,7 +185,8 @@
     "dev:webui": "cross-env BABEL_ENV=ui babel-node tools/dev.server.js",
     "build:webui": "npm run pre:webpack && cross-env BABEL_ENV=ui webpack --config tools/webpack.prod.config.babel.js",
     "build:docker": "docker build -t verdaccio . --no-cache",
-    "build:docker:rpi": "docker build -f Dockerfile.rpi -t verdaccio:rpi ."
+    "build:docker:rpi": "docker build -f Dockerfile.rpi -t verdaccio:rpi .",
+    "snyk-protect": "snyk protect"
   },
   "engines": {
     "node": ">=6.12.0",
@@ -242,5 +244,6 @@
     "type": "opencollective",
     "url": "https://opencollective.com/verdaccio",
     "logo": "https://opencollective.com/verdaccio/logo.txt"
-  }
+  },
+  "snyk": true
 }
