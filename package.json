@@ -47,7 +47,7 @@
     "mv": "2.1.1",
     "pkginfo": "0.4.1",
     "react-autosuggest": "9.4.2",
-    "react-router": "4.3.1",
+    "react-router": "6.30.2",
     "request": "2.88.0",
     "semver": "5.5.1",
     "verdaccio-audit": "1.0.0",
